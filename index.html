@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;500;600;700&display=swap');   /*font ka url jo import kra hai*/
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body{
+            overflow-x: hidden;   /*hamne '*' mein overflow hidden siliye nhi kiya kyuki wha pr image cut ho jaati isliye*/
+        }
+        @media(max-width:300px){
+            body{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 100vw;
+                margin: 0px 15%;
+            }
+        }
+        :root{
+            --bg-color:#4642d4;    /*variable define kra*/
+        }
+        .header_content{
+            width:100vw;
+
+        }
+        .header{
+            max-width:80%;   /*max width set krdi jisse sides mein gap aa jaye*/  /*80% of header_content's widths */
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 15px auto;    /*to make complete header in center usedd auto*/
+            padding: 25px;
+        }
+
+        .logo img{
+            width: 30px;
+            height: 30px;
+        }
+        .logo{
+            display: flex;
+            gap:5px;
+        }
+        .logo h1{
+            font-size: 1.7rem;
+        }
+
+
+        a{
+            text-decoration: none;
+        }
+
+        .nav ul{
+            list-style: none;
+            display: flex;
+            gap:25px;
+            margin-top: 10px;
+            
+        }
+        .nav ul li a{
+            display: none;     /*kch nhi dikhega(responsive banane ke liye*/
+            color: grey;
+            font-size: 1rem;
+            font-weight: 500;
+            /* transition: 0.2s all linear 0s; */
+            transform: all 0.1s;
+        }
+        @media screen and (min-width:950px){
+            .nav ul li a{
+                display:block;      /*min 700px tak hi dikhega*/
+            }
+        }
+        .nav ul li a:hover{
+            color: var(--bg-color);   /*variable ka use kra*/
+        }
+        .contact{
+            display:none;    /*kch nhi dikhega */
+            background-color: var(--bg-color);
+            border-radius: 5px;
+            padding: 8px 9px;
+            transform: all 0.1s;
+        }
+        @media screen and (min-width:950px){
+            .contact{
+                display:block;   /*min 700 px tak  hi dikhega usse kam hone pr gayab ho jayega*/
+            }
+            
+        }
+        .contact:hover{
+            background-color: #3731d3;
+        }
+        .contact a{
+            color: aliceblue;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0px 5px;
+        }
+
+        button img{
+            width:40px;
+            height:45px;
+            border-radius: 20px;
+        }
+        button{
+            display: none;
+            border: none;
+            background-color: white;
+        }
+
+        @media screen and (max-width:950px){
+            button{
+                display:block;
+            }
+        }
+
+
+        .content{
+            width:100vw;
+        }
+
+        .main{
+            max-width:80%;   /*max width set krdi jisse sides mein gap aa jaye*/  /*80% of header_content's widths */
+            display: flex;
+            flex-direction: row;
+            margin: 25px auto;    /*(top-bottom)(left-right)*/   /*to make complete content in center usedd auto*/
+            gap:60px;
+            padding: 25px;
+        }
+
+        .left-box{
+            display:flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 7%;
+            animation: slidefromleft 1s ease forwards;    /*text ko left se right lane ke liye */
+        }
+        @keyframes slidefromleft {
+            0%{
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100%{
+                opacity: 1;
+                transform: translateX(0%);
+            }
+            
+        }
+        .first{
+            color: var(--bg-color);
+            font-size: 0.9rem;
+        }
+        .second{
+            font-weight:bold;
+            font-size: 3rem;
+        }
+        .third{
+            color:grey;
+            margin: 25px 140px 35px 0px;
+        }
+        .buttons{
+            display: flex;
+            gap:15px;
+        }
+        .start_now{
+            background-color: var(--bg-color);
+            border-radius: 5px;
+            padding:11px 20px;
+            color: aliceblue;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .start_now:hover{
+            
+            background-color: #3731d3;
+        
+        }
+        .take_tour{
+            background-color: rgb(28, 28, 28);
+            border-radius: 5px;
+            padding:11px 20px;
+            color: aliceblue;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .take_tour:hover{
+            background-color: aliceblue;
+            color: black;
+        }
+        
+        .right-box img{
+            height:500px;      /*% mein isliye nhi diya kyuki screen choti hone pr image ka size bhi chota ho rha tha*/
+            width:450px;
+            border-radius: 10px;
+        }
+
+        @media screen and (max-width:1100px) {
+            .main{
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-top: -30px;
+            }
+            .left-box{
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+            }
+            .first{
+                font-size: 1rem;
+            }
+            .second{
+                font-size: 1.8rem;
+                text-align: center;
+            }
+            .third{
+                font-size:1rem;
+                margin: 25px 0px 35px 0px;
+
+            }
+
+            .right-box img{
+                width:300px;
+                height:400px;
+            }
+        }
+
+
+        .company-container{
+            display: flex;
+            flex-direction:column ;
+            align-items: center;
+            gap:25px;
+            animation: slidefromleft 1s ease forwards;
+        }
+
+        .company-container h1{
+            font-size: 2.4rem;
+            margin-top:20px ;
+        }
+        .company-grid{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            background-color: rgba(211, 211, 211, 0.151);
+            font-size: 1.3rem;
+            gap: 5px;
+            font-weight: 500;
+            color:gray;
+            border-radius: 10px;
+
+        }
+
+        @media screen and (max-width:1100px) {
+            .company-grid{
+                grid-template-columns: repeat(2,1fr);   /*to convert the logo into 4 boxes in small screen sizes*/
+            }
+
+            .company-container{
+                margin: 0px 5px 0px 5px;
+            }
+            .company-container h1{
+                font-size: 1.6rem;
+            }
+            
+        }
+        .class-logo img{
+            width:40px;
+            height:40px;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .class-logo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        
+        .container{
+            width:100vw;   /*ye define krna bahut jaruri hai jisse hummax-width set kr paaye aur usko centre mein la paaye*/
+            background-color: rgba(211, 211, 211, 0.151);
+
+        }
+        .card_section{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width:80%;   /*max width set krdi jisse sides mein gap aa jaye*/  /*80% of header_content's widths */
+            margin: 20px auto;    /*to make complete section in center usedd auto*/
+            padding: 25px;
+            text-align: center;
+            gap:25px;
+        }
+        .card_section h1{
+            font-size: 2.4rem;
+        }
+        .card_section p{
+            color: grey;
+        }
+        .main_cards{
+            display:grid;
+            grid-template-columns: repeat(2,1fr);
+            color: white;
+            gap:30px;
+        }
+        .card img{
+            width:30px;
+            height:30px;
+            border-radius: 20px;
+        }
+        .card h3{
+            font-weight: bold;
+            
+        }
+        .card p{
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        .card{
+            display: flex;
+            flex-direction: column;
+            gap:5px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            width: 320px;
+            height: 220px;
+            transition: 0.15s all linear 0s;
+            padding: 25px;
+        }
+        .card:hover{
+            transform: scale(1.05);
+        }
+        #card0{
+            background-color:#2980b9 ;
+        }
+        #card1{
+            background-color: #ff358b;
+        }
+        #card2{
+            background-color: #f3a607;
+        }
+        #card3{
+            background-color: #47a889;
+        }
+        #card4{
+            background-color: #699a3d;
+        }
+        #card5{
+            background-color:#2980b9 ;
+        }
+         
+        @media screen and (max-width:700px) {
+            .main_cards{
+                grid-template-columns: repeat(1,1fr);
+            }
+        }
+        .comments_section{
+            width: 100vw;
+        }
+        .comments{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap:15px;
+            margin:30px auto;
+            max-width: 80%;
+        }
+        .main_box{
+            display: flex;
+            gap:25px;
+        }
+        @media(max-width:1000px){
+            .main_box{
+                flex-direction: column;
+            }
+            .box{
+                overflow-wrap: normal;
+                padding: 25px;
+            }
+            .box p{
+                font-size: 0.9rem;
+            }
+        }
+
+        @media(max-width:500px){
+            
+            .box p{
+                font-size: 0.8rem;
+            }
+            .box h4{
+                font-size:0.9rem;
+            }
+            .comments h1{
+                font-size: 1.6rem;
+            }
+        }
+        .box{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width:25vw;
+            height:270px;
+            gap:5px;
+            border: 2px solid rgba(211, 211, 211, 0.623);
+            border-radius: 10px;
+            transition: 0.1s all linear 0s;
+            box-shadow: 1px 1px 15px black;
+        }
+        .box img{
+            border-radius: 50px;
+            width:70px;
+            height:70px;
+            margin: 15px auto;
+        }
+        .box h4{
+            color: var(--bg-color);
+        }
+
+        .box:hover{
+            transform: scale(1.02);
+            border:2px solid var(--bg-color);
+            box-shadow: 5px 5px 20px gray;
+        }
+        @media (max-width:1000px) {
+            .box{
+                width:75vw;
+            }
+        }
+        
+        .newsletter_section{
+            width: 100vw;
+        }
+        .newsletter_main{
+            max-width:80%;
+            margin:60px auto;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(211, 211, 211, 0.151);
+            gap:25px;
+        }
+        .content-left{
+            opacity: 1;
+        }
+       
+        .content-left img{
+            width: 33vw;  /*in vw taaki screen ka size kam krne pr image ka size bhi kam ho*/
+            height: 330px;
+        }
+
+        @media (max-width:750px) {
+            .content-left{
+                opacity:0;
+            }   
+            .content-left img{
+                width:0vw;
+                height: 0px;
+            }   
+            .content-right{
+                padding: 43px;
+            }
+            .newsletter_main{
+                max-width: 100%;
+            }
+        }
+        @media (min-width:1110px) {
+            .content-left img{
+                margin-left: -60px;
+            }
+            .newsletter_main{
+                max-width: 65%;
+            }
+        }
+        .content-right{
+            display: flex;
+            flex-direction: column;
+            gap:30px;
+        }
+
+        .content-right a{
+            text-decoration: underline;
+        }
+        .content-right p{
+            color: gray;
+            font-size: 0.8rem;
+        }
+        .head h1{
+            color: var(--bg-color);
+        }
+        .head p{
+            color: gray;
+        }
+        #mail{
+            border: 1px solid rgba(211, 211, 211, 0.9);
+            border-radius: 5px;
+            padding: 5px;
+        }
+        #button{
+            background-color: var(--bg-color);
+            border-radius: 5px;
+            padding:5px 12px;
+            color: aliceblue;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: none;
+        }
+        #button:hover{
+            background-color: #3731d3;
+        }
+       
+        
+        
+        .footer_main{
+            width:100vw;
+            background-color: rgba(211, 211, 211, 0.151);
+            padding: 10px;
+        }
+
+        .footer{
+            max-width:80%;
+            margin:100px auto;
+            display: flex;
+            justify-content: space-around;
+            gap:30px;
+        }
+
+        .footer_one{
+            display: flex;
+            flex-direction: column;
+            gap:25px;
+        }
+
+        .image{
+            display: flex;
+            gap:6.5px;
+        }
+        .image img{
+            width:25px;
+            height:25px;
+        }
+
+        .image h2{
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        .social_media{
+            display: flex;
+            gap:15px;
+        }
+        .social_media img{
+            width:25px;
+            height:25px;
+        }
+        .footer_one p{
+            color: gray;
+            font-weight: 500;
+        }
+
+        .footer_two{
+            display: flex;
+            gap:60px;
+        }
+
+        .foot{
+            display: flex;
+            flex-direction: column;
+            gap:40px;
+        }
+
+        .foot_content{
+            display: flex;
+            flex-direction: column;
+            gap:20px;
+        }
+        .foot_content a{
+            color: gray;
+        }
+        .foot_content a:hover{
+            color: #3731d3;
+        }
+        hr{
+            max-width:80%;
+            margin:0px auto;
+            border:1px solid rgba(128, 128, 128, 0.249)  /*to change color of line*/
+        }
+        .copy{
+            color: gray;
+            padding: 25px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @media (max-width:750px) {
+            .footer{
+                flex-direction: column;
+                gap:50px;
+            }
+            .footer_two{
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="header_content">
+            <div class="header">
+                <div class="logo">
+                    <img src="StudySync.png" alt="">
+                    <h1>StudySync</h1>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="contact">
+                    <a href="#contact">Contact Us</a>
+                </div>              
+                <button class="menu" type="button">  <!--jb screen choti hogi tab yue aa jayega-->
+                    <img src="menu_bar.jpeg" alt="menu_bar">
+                </button>
+            </div>
+    </div>
+
+    <div class="content">
+        <div class="main">
+            <div class="left-box">
+                <p class="first">Very Proud to Introduce</p>
+                <h1 class="second">Seamless learning for brighter future</h1>
+                <p class = "third">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum dignissimos molestias adipisci magni ad tempore hic esse ipsum, nobis aperiam eius error delectus voluptas sunt corporis dolor voluptatibus. Nesciunt ex ad iusto.</p>
+                <div class="buttons">
+                    <a href="start_now" class="start_now">Start now</a>
+                    <a href="take_tour" class="take_tour">Take tour</a>
+                </div>
+            </div>
+            <div class="right-box">
+                <img src="gradient.webp" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="company-container">
+        <h1>
+            Trusted by the best
+        </h1>
+        <div class="company-grid">
+            <div class="class-logo">
+                <img src="google.jpeg" alt="">
+                <span class="logotext">Google</span>
+            </div>
+            <div class="class-logo">
+                <img src="instagram.jpeg" alt="">
+                <span class="logotext">Instagram</span>
+            </div>
+            <div class="class-logo">
+                <img src="linkedin.jpeg" alt="">
+                <span class="logotext"><pre> Linkedin</pre></span>
+            </div>
+            <div class="class-logo">
+                <img src="twitter.jpeg" alt="">
+                <span class="logotext">Twitter</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card_section">
+            <h1>Our competitive advantages</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolorum obcaecati ut iste, quas laboriosam eaque similique deleniti dolorem, repudiandae modi? Ipsa laboriosam sint exercitationem ullam dolorem aliquam aperiam ratione.</p>
+            <div class="main_cards">
+                <div class="card" id="card0">
+                    <img src="bulb.png" alt="">
+                    <h3>Personalised Learning</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae soluta nulla quam harum ipsam tempora.</p>
+                </div>
+                <div class="card" id="card1">
+                    <img src="money'.png" alt="">
+                    <h3>Affordability</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae soluta nulla quam harum ipsam tempora.</p>
+                </div>
+                <div class="card" id="card2">
+                    <img src="handshake.png" alt="">
+                    <h3>Industry Partnership</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae soluta nulla quam harum ipsam tempora.</p>
+                </div>
+                <div class="card" id="card3">
+                    <img src="technology.png" alt="">
+                    <h3>Innovative Technology</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae soluta nulla quam harum ipsam tempora.</p>
+                </div>
+                <div class="card" id="card4">
+                    <img src="phone.png" alt="">
+                    <h3>Responsive Support</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae soluta nulla quam harum ipsam tempora.</p>
+                </div>
+                <div class="card" id="card5">
+                    <img src="bulb.png" alt="">
+                    <h3>Analytics and Insights</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae soluta nulla quam harum ipsam tempora.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comments_section">
+        <div class="comments">
+            <h1>What others say about us</h1>
+            <div class="main_box">
+                <div class="box">
+                    <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium nobis omnis odio dolores expedita beatae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, inventore?"</p>
+                    <img src="img1.jpg" alt="">
+                    <h4>Sarah Johnson</h4>
+                    <p>8th grade English Teacher</p>
+                </div>
+                <div class="box">
+                    <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium nobis omnis odio dolores expedita beatae. Lorem ipsum dolor sit amet consectetur."</p>
+                    <img src="img1.jpg" alt="">
+                    <h4>Mark Davis</h4>
+                    <p>Parent</p>
+                </div>
+                <div class="box">
+                    <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium nobis omnis odio dolores expedita beatae. Lorem ipsum dolor sit amet."</p>
+                    <img src="img1.jpg" alt="">
+                    <h4>Dr. James Carter</h4>
+                    <p>School Administrator</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="newsletter_section">
+        <div class="newsletter_main">
+            <div class="content-left">
+                <img src="wallpaer.jpeg" alt="">
+            </div>
+            <div class="content-right">
+                <div class="head">
+                    <h1>Get the latest updates</h1>
+                    <p>Sign up for our newsletter</p>
+                </div>
+                <div class="form">
+                    <input type="text" placeholder="Email" id="mail">
+                    <input type="submit" value="Send" id="button">
+                </div>
+                <p>By signing up to our newsletter you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer_main">
+        <div class="footer">
+            <div class="footer_one">
+                <div class="image">
+                    <img src="StudySync.png" alt="">
+                    <h2>StudySync</h2>                    
+                </div>
+                <p>Seamless Learning for Brighter Futures</p>
+                <div class="social_media">
+                    <img src="instagram.jpeg" alt="" class="media_icon">
+                    <img src="twitter.jpeg" alt="" class="media_icon">
+                    <img src="linkedin.jpeg" alt="" class="media_icon">
+                    <img src="google.jpeg" alt="" class="media_icon">
+                </div>
+            </div>
+
+            <div class="footer_two">
+                <div class="foot">
+                    <div class="foot_header">
+                        <h4>Products</h4>
+                    </div>
+                    <div class="foot_content">
+                        <a href="">Overview</a>
+                        <a href="">Solutions</a>
+                        <a href="">Pricing</a>
+                        <a href="">Customers</a>
+                    </div>
+                </div>
+
+                <div class="foot">
+                    <div class="foot_header">
+                        <h4>Company</h4>
+                    </div>
+                    <div class="foot_content">
+                        <a href="">About</a>
+                        <a href="">Investors Relations</a>
+                        <a href="">Jobs</a>
+                        <a href="">Press</a>
+                        <a href="">Blog</a>
+                    </div>
+                </div>
+
+                <div class="foot">
+                    <div class="foot_header">
+                        <h4>Support</h4>
+                    </div>
+                    <div class="foot_content">
+                        <a href="">Contact</a>
+                        <a href="">Documentation</a>
+                        <a href="">Chat</a>
+                        <a href="">FAQ</a>
+                    </div>
+                </div>
+
+                <div class="foot">
+                    <div class="foot_header">
+                        <h4>Legal</h4>
+                    </div>
+                    <div class="foot_content">
+                        <a href="">Terms of Service</a>
+                        <a href="">Privacy Policy</a>
+                        <a href="">Cookie Settings</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <hr>
+        <div class="copy">
+            <p>&copy 2021 - Present StudySync. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
